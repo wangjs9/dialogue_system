@@ -1,0 +1,19 @@
+### model
+model_name_or_path: /home/v-jiaswang/models/Qwen2.5-7B-Instruct
+
+### method
+finetuning_type: lora
+
+### dataset
+task: qwen_infer
+dataset_name: PsyQA_full
+dataset_dir: /home/v-jiaswang/datasets/EmpatheticLLMs
+template: qwen2.5
+lang: zh
+
+### output
+save_dir: /home/v-jiaswang/datasets/EmpatheticLLMs/PsyDTCorpus_test
+overwrite_save_dir: true
+
+### eval
+batch_size: 1

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24/7 Empathetic Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="/static/images/icon-chatbot.png">
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+<div id="login" class="active">
+    <h2>登录 Login</h2>
+    <form method="POST" action="/login" id="loginForm">
+        <input type="text" name="username" placeholder="用户名 Username" class="user-input" required/>
+        <input type="password" name="password" placeholder="密码 Password" class="user-input" required/>
+
+        <!-- ✅ Error Message Container -->
+        <p id="errorMessage" class="hidden text-red-500 text-center mt-2"></p>
+
+        <!-- ✅ Loading Spinner (Hidden by Default) -->
+        <div id="loading-spinner" class="hidden text-center mt-2">
+            <span class="loader"></span>
+        </div>
+
+        <button type="submit" class="user-input-button">登录 Login</button>
+
+        <br/>
+        <div class="button-container">
+            <button type="button" id="anonymousLogin" class="visitor-input-button">测试模式<br/>Experiment Mode
+            </button>
+            <button type="button" id="signUp" class="visitor-input-button">注册 Sign Up</button>
+        </div>
+    </form>
+</div>
+
+<script src="/static/js/login.js"></script>
+</body>
+</html>

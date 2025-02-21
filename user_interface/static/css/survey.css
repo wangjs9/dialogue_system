@@ -1,0 +1,22 @@
+.likert-scale {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.likert-item {
+    flex: 1;
+    height: 30px;
+    background-color: #e0e0e0;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.likert-item.selected {
+    background-color: #93c5fd;
+}
+
+.likert-item.active {
+    background-color: #3b82f6;
+}

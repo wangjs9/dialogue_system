@@ -1,0 +1,31 @@
+{
+  "ROOT_DIR": "/mnt/sing",
+  "azure_config": {
+    "endpoint": "https://gcrgpt4aoai5.openai.azure.com/",
+    "api_version": "2024-10-01-preview",
+    "token_provider_link": "https://cognitiveservices.azure.com/.default"
+  },
+  "model_path": {
+    "gpt-4o": "gpt-4o_2024-08-06",
+    "llama-3.1": "{ROOT_DIR}/models/llama-3.1-8B-Instruct",
+    "llama-3.2": "{ROOT_DIR}/models/llama-3.2-3B-Instruct",
+    "qwen-2.5-7b": "{ROOT_DIR}/models/Qwen2.5-7B-Instruct",
+    "soulchat": "{ROOT_DIR}/models/SoulChat2.0-Qwen2-7B"
+  },
+  "train_data_path": {
+    "empathetic": "{ROOT_DIR}/datasets/PsyDTCorpus/PsyDTCorpus_train_mulit_turn_packing.json",
+    "persuasive": "{ROOT_DIR}/datasets/Persuasive"
+  },
+  "test_data_path": {
+    "empathetic": "{ROOT_DIR}/datasets/PsyDTCorpus/PsyDTCorpus_test_single_turn_split.json",
+    "persuasive": "{ROOT_DIR}/datasets/Persuasive"
+  },
+  "user_state_path": {
+    "empathetic": "{ROOT_DIR}/datasets/PsyDTCorpus/PsyDTCorpus_train_user_state.jsonl",
+    "persuasive": "{ROOT_DIR}/datasets/Persuasive"
+  },
+  "end_points": [
+    "https://gcraoai9sw1.openai.azure.com/",
+    "https://gcrgpt4aoai9spot.openai.azure.com/"
+  ]
+}

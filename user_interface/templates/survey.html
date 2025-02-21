@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/survey.css">
+</head>
+<body class="flex justify-center items-center min-h-screen bg-gray-100">
+<div class="bg-white p-6 rounded-lg shadow-lg w-96">
+    <h2 class="text-lg font-bold text-center mb-4">Can you tell me your feelings right now?</h2>
+
+    <!-- Question 1: Calm → Excited -->
+    <div class="mb-6">
+        <p class="font-semibold text-center mb-2">Very calm (1) → Very excited (5)</p>
+        <div class="likert-scale" id="scale1">
+            <div class="likert-item" data-value="1"></div>
+            <div class="likert-item" data-value="2"></div>
+            <div class="likert-item" data-value="3"></div>
+            <div class="likert-item" data-value="4"></div>
+            <div class="likert-item" data-value="5"></div>
+        </div>
+    </div>
+
+    <!-- Question 2: Unpleasant → Pleasant -->
+    <div class="mb-6">
+        <p class="font-semibold text-center mb-2">Unpleasant (1) → Pleasant (5)</p>
+        <div class="likert-scale" id="scale2">
+            <div class="likert-item" data-value="1"></div>
+            <div class="likert-item" data-value="2"></div>
+            <div class="likert-item" data-value="3"></div>
+            <div class="likert-item" data-value="4"></div>
+            <div class="likert-item" data-value="5"></div>
+        </div>
+    </div>
+
+    <!-- Question 3: Useless → Supportive -->
+    <div class="mb-6">
+        <p class="font-semibold text-center mb-2">Useless (1) → Supportive (5)</p>
+        <div class="likert-scale" id="scale3">
+            <div class="likert-item" data-value="1"></div>
+            <div class="likert-item" data-value="2"></div>
+            <div class="likert-item" data-value="3"></div>
+            <div class="likert-item" data-value="4"></div>
+            <div class="likert-item" data-value="5"></div>
+        </div>
+    </div>
+
+     <!-- Question 4: Engagement -->
+    <div class="mb-6">
+        <p class="font-semibold text-center mb-2">Will you use this model in the future?</p>
+        <div class="likert-scale" id="scale4">
+            <div class="likert-item" data-value="1"></div>
+            <div class="likert-item" data-value="2"></div>
+            <div class="likert-item" data-value="3"></div>
+            <div class="likert-item" data-value="4"></div>
+            <div class="likert-item" data-value="5"></div>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button id="submit-btn" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+        Submit
+    </button>
+</div>
+<script>
+    // ✅ Get username and user mode from FastAPI (injected via Jinja2)
+    const username = "{{ username }}".trim();
+    const userMode = "{{ user_mode }}".trim();
+
+    console.log("Username:", username);
+    console.log("User Mode:", userMode);
+
+    // ✅ Redirect to /login if access is invalid
+    if (!username || userMode !== "anonymous") {
+        alert("403 Forbidden.");
+        alert(username);
+        alert(userMode);
+        window.location.href = "/login";
+    }
+</script>
+<script src="/static/js/survey.js"></script>
+</body>
+</html>

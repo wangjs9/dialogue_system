@@ -1,0 +1,142 @@
+/* ✅ Reset Default Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f1f2;
+    font-family: sans-serif;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height to center content */
+}
+
+/* ✅ Center the Login Box */
+#login {
+    background-color: #fffdef;
+    width: 50%;
+    min-width: 400px;
+    max-width: 550px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    /* ✅ Centering Fix */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ✅ Bold and Large "登录 Login" */
+#login h2 {
+    font-size: 24px; /* Bigger Font */
+    font-weight: bold; /* Bold Text */
+    color: #333; /* Darker Color */
+    margin-bottom: 20px;
+}
+
+/* ✅ Input Fields */
+.user-input {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 10%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* ✅ Buttons */
+.user-input-button {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 10%;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.user-input-button:hover {
+    background-color: #45a049;
+}
+
+/* ✅ Button Container (Same Width as Submit Button) */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%; /* Same width as the submit button */
+    margin: 10px auto; /* Center it */
+    gap: 10px;
+}
+
+.visitor-input-button {
+    flex: 1; /* Make buttons inside container equal width */
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.visitor-input-button:hover {
+    background-color: #45a049;
+}
+
+/* ✅ Responsive Design */
+@media screen and (max-width: 768px) {
+    #login {
+        width: 90%;
+        min-width: 320px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .user-input, .user-input-button, .button-container {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* ✅ Loading Spinner */
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4CAF50; /* Green Spinner */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ✅ Hide Elements by Default */
+.hidden {
+    display: none;
+}

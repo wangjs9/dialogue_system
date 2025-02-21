@@ -1,0 +1,5 @@
+{
+  "MODEL_PATH": "/home/v-jiaswang/models/Qwen2.5-7B-Instruct",
+  "SFT_LORA_PATH": "/home/v-jiaswang/checkpoint/EmpatheticLLMs/empathetic_sft_v1.0",
+  "DPO_LORA_PATH": "/home/v-jiaswang/checkpoint/EmpatheticLLMs/empathetic_dpo_v2.0"
+}

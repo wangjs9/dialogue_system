@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24/7 Empathetic Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/chatbot.css">
+</head>
+<body>
+<div id="chatbox">
+    <div id="chat_header">
+        <h2>24/7 同理心聊天机器人<br/>24/7 Empathetic Chatbot</h2>
+        <ul class="social-icons">
+            <li id="close">
+                <a href="#" title="Exit Chat">
+                    <i class="fas fa-house-chimney"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="chat_message"></div>
+    <div id="sendmessage">
+        <textarea id="user_input" placeholder="请输入…… / Please type..." oninput="adjustHeight(this)"></textarea>
+        <button id="send">发送 / Send</button>
+    </div>
+</div>
+<!--<a href="/logout">Logout</a>-->
+<script>
+    // Pass the username and user mode from FastAPI to JavaScript
+    const username = "{{ username }}".trim();
+    const userMode = "{{ user_mode }}".trim();
+
+
+    if (!username || (userMode !== "member" && userMode !== "anonymous")) {
+        alert("403 Forbidden: You must log in first.");
+        window.location.href = "/login";
+    }
+
+    function adjustHeight(element) {
+        element.style.height = "40px"; // Reset to default height
+        let newHeight = element.scrollHeight; // Get new height based on content
+
+        // Expand height dynamically but limit to 95px, enable scrollbar if exceeded
+        if (newHeight > 95) {
+            element.style.height = "95px";
+            element.style.overflowY = "auto"; // Show scrollbar when needed
+        } else {
+            element.style.height = newHeight + "px";
+            element.style.overflowY = "hidden"; // Hide scrollbar if below max height
+        }
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/js/chatbot.js"></script>
+</body>
+</html>

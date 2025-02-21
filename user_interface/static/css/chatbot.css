@@ -1,0 +1,404 @@
+/* General Styles */
+body {
+    background: #f0f1f2;
+    font-family: Arial, sans-serif;
+    overflow-y: auto; /* Allow scrolling */
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+body {
+    scrollbar-width: none;
+}
+
+/* Chatbox Container */
+#chatbox {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    width: 50%;
+    height: 80%;
+    min-width: 450px;
+    max-width: 550px;
+    max-height: 800px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column; /* Ensures messages take up space and input stays at the bottom */
+    padding: 20px;
+    overflow: hidden; /* Prevents chatbox from expanding */
+}
+
+/* Chatbox Header */
+#chat_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    background: white;
+}
+
+/* Exit Icon */
+#exit_icon {
+    font-size: 20px;
+    text-decoration: none;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#exit_icon:hover {
+    color: #d9534f; /* Red hover effect */
+}
+
+/* Chat Messages (Takes Remaining Space) */
+#chat_message {
+    border-top: 1px solid #ccc; /* Divider from messages */
+    flex-grow: 1; /* Takes up all available space minus sendmessage */
+    overflow-y: auto; /* Allow scrolling */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between messages */
+}
+
+/* Hide scrollbar inside chat messages */
+#chat_message::-webkit-scrollbar {
+    display: none;
+}
+
+#chat_message {
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Bot Message Container */
+.bot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Bot Info (Avatar + Name Side-by-Side) */
+.bot-info {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between avatar and name */
+    margin-bottom: 3px; /* Space between bot info and message */
+}
+
+/* Bot Avatar */
+.avatar.bot-avatar {
+    width: 24px; /* Small, matching font height */
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Bot Name */
+.bot-name {
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+}
+
+/* 指令文本（选中后隐藏） */
+.instruction {
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 5px;
+    transition: opacity 0.2s;
+}
+
+/* 机器人回复容器（两个气泡在同一行） */
+.bot-response-container {
+    display: flex;
+    gap: 10px; /* 保持两个气泡间距 */
+    justify-content: flex-start;
+    align-items: flex-start; /* 保持顶部对齐 */
+    width: 100%;
+}
+
+/* 机器人普通回复气泡 */
+.message.bot,
+.response-option {
+    background-color: #e0e7f4;
+    padding: 10px; /* 统一 padding */
+    border-radius: 10px;
+    max-width: 60%;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* **文本左对齐** */
+    text-align: left;
+    word-wrap: break-word;
+    white-space: normal; /* 允许换行 */
+    line-height: 1; /* 适中行间距 */
+    min-height: 40px; /* 限制最小高度 */
+}
+
+/* 响应式调整，确保小屏幕适配 */
+@media (max-width: 600px) {
+    .message.bot,
+    .response-option {
+        max-width: 80%;
+    }
+}
+
+/* 未选中时，两个 option 气泡宽度均等 */
+.response-option {
+    flex: 1; /* 保证两个气泡宽度相等 */
+    min-width: 150px;
+    max-width: 50%;
+}
+
+/* 鼠标悬停时的效果 */
+.response-option:hover {
+    background-color: #d0d9f2;
+}
+
+/* 选中的回复气泡（变成普通 bot 回复） */
+.selected-response {
+    background-color: #e0e7f4 !important;
+    color: black !important;
+    width: auto !important; /* 宽度自适应 */
+    max-width: 60%;
+    min-width: 150px;
+    cursor: default;
+    padding: 12px;
+    flex: none;
+    display: inline-block;
+    justify-content: flex-start; /* **文本左对齐** */
+    text-align: left;
+}
+
+/* User Message Container */
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* User Info (Name + Avatar Side-by-Side) */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between name and avatar */
+    margin-bottom: 3px; /* Space between user info and message */
+}
+
+/* User Name */
+.user-name {
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+}
+
+/* User Avatar */
+.avatar.user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* User Messages */
+.message.user {
+    background-color: #e0f4e7;
+    text-align: right;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+/* Send Message Container (Fixed at Bottom) */
+#sendmessage {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid #ccc; /* Divider from messages */
+    background: white; /* Ensures background stays white */
+    position: relative;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: 15px; /* 15px gap between chatbox bottom and send bubble */
+    align-items: flex-end; /* 保持按钮位置不变 */
+}
+
+/* User Input (Textarea) */
+#sendmessage textarea {
+    flex: 1; /* 让输入框填充剩余空间 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none; /* 禁止用户手动调整大小 */
+
+    height: 40px; /* 初始高度 */
+    max-height: 95px; /* 最大扩展高度 */
+    overflow-y: hidden; /* 默认隐藏滚动条 */
+    white-space: pre-wrap; /* 保持换行 */
+}
+
+/* Send Button */
+#sendmessage button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 40px; /* 保持按钮大小 */
+}
+
+/* Button Hover Effect */
+#sendmessage button:hover {
+    background-color: #45a049;
+}
+
+
+/* Remove default list styling */
+.social-icons {
+    list-style: none; /* Removes bullets */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Ensures inline display */
+    align-items: center;
+}
+
+/* Style the exit button */
+#close a {
+    text-decoration: none;
+    color: #888;
+    font-size: 24px; /* Adjust icon size */
+    transition: color 0.3s ease;
+}
+
+#close a:hover {
+    color: #d9534f; /* Red hover effect */
+}
+
+.keyword-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.keyword-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.keyword-button.selected {
+    background-color: #2E7D32;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Feedback & Rating (Aligned in One Row) */
+.feedback-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px 10px;
+    /*background: #f8f9fa;*/
+    border-radius: 10px;
+}
+
+/* Feedback Buttons */
+.feedback-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+/* Style for buttons */
+.feedback-buttons button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+/* Hover effects */
+.feedback-buttons .thumb-up:hover {
+    color: green;
+}
+
+.feedback-buttons .thumb-down:hover {
+    color: red;
+}
+
+.feedback-buttons .tie:hover {
+    color: orange;
+}
+
+/* After feedback is submitted */
+.feedback-confirmation {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* After feedback is submitted */
+.feedback-confirmation {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.rating-scale {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.rating-item {
+    width: 25px;
+    height: 25px;
+    background-color: lightgray;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 25px;
+    transition: background 0.2s;
+    font-weight: bold;
+}
+
+.rating-item:hover {
+    background-color: gold;
+}
+
+.rating-item.selected {
+    background-color: orange;
+}
+
+.feedback-confirmation, .rating-confirmation {
+    text-align: left;
+    font-size: 14px;
+    color: green;
+    font-weight: bold;
+    margin-top: 5px;
+}
