@@ -24,7 +24,7 @@ body {
     background-color: #fff;
     width: 50%;
     height: 80%;
-    min-width: 450px;
+    min-width: 480px;
     max-width: 550px;
     max-height: 800px;
     border-radius: 15px;
@@ -316,26 +316,49 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 2px;
     width: 100%;
-    padding: 5px 10px;
+    padding: 2px 2px;
     /*background: #f8f9fa;*/
     border-radius: 10px;
+}
+
+.feedback-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* 控制两行之间的间距 */
+}
+
+.feedback-label {
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* 默认隐藏所有反馈部分 */
+.feedback-group {
+    display: none;
+}
+
+/* 在匿名模式下显示反馈部分 */
+body[mode="anonymous"] .feedback-group {
+    display: block;
 }
 
 /* Feedback Buttons */
 .feedback-buttons {
     display: flex;
-    gap: 10px;
-    margin-left: 10px;
-    margin-top: 5px;
+    gap: 5px;
+    margin-left: 2px;
+    /*margin-top: 2px;*/
 }
 
 /* Style for buttons */
 .feedback-buttons button {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     transition: color 0.2s ease-in-out;
 }
@@ -353,36 +376,22 @@ body {
     color: orange;
 }
 
-/* After feedback is submitted */
-.feedback-confirmation {
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
-}
-
-/* After feedback is submitted */
-.feedback-confirmation {
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
-}
-
 .rating-scale {
     display: flex;
     justify-content: center;
     gap: 5px;
-    margin-top: 5px;
+    /*margin-top: 2px;*/
 }
 
 .rating-item {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     background-color: lightgray;
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
-    font-size: 14px;
-    line-height: 25px;
+    font-size: 10px;
+    line-height: 20px;
     transition: background 0.2s;
     font-weight: bold;
 }
@@ -395,10 +404,17 @@ body {
     background-color: orange;
 }
 
+.rating-label {
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
 .feedback-confirmation, .rating-confirmation {
     text-align: left;
-    font-size: 14px;
+    font-size: 12px;
     color: green;
     font-weight: bold;
-    margin-top: 5px;
+    /*margin-top: 2px;*/
 }

@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    if (userMode === "anonymous") {
+        $("body").attr("mode", "anonymous");
+    }
+
     console.log("Username:", username);
     console.log("User Mode:", userMode);
 
@@ -22,6 +26,7 @@ $(document).ready(function () {
 
     $("#send").click(function () {
         let userMessage = $("#user_input").val().trim();
+        let responseId = $("#chat_message .message").length + 1;
         if (userMessage === "") return;
 
         if (waitingForBot) {
@@ -44,8 +49,21 @@ $(document).ready(function () {
                     <img src="/static/images/user.png" class="avatar user-avatar" alt="User Avatar">
                 </div>
                 <div class="message user">${userMessage}</div>
+                ${userMode === "anonymous" ? `
+                <div class="feedback-section" data-response-id="${responseId}" style="right: 0; width: auto;">
+                    <div class="feedback-group" style="display: inline-block;">
+                        <p class="feedback-label">心情变化 Emotion Change:</p>
+                        <div class="feedback-buttons">
+                            <button class="thumb-up">👍</button>
+                            <button class="tie">🤝</button>
+                            <button class="thumb-down">👎</button>
+                        </div>
+                    </div>
+                </div>
+                ` : ""}
             </div>
         `);
+
         $("#user_input").val("");
         scrollToBottom();
 
@@ -135,18 +153,29 @@ $(document).ready(function () {
             }
         });
 
-        responseContainer.append(`
-            <div class="feedback-section" data-response-id="${responseId}">
+        let feedbackHtml = userMode === "anonymous" ? `
+            <div class="feedback-group">
+                <p class="feedback-label">心情变化 Emotion Change:</p>
                 <div class="feedback-buttons">
                     <button class="thumb-up">👍</button>
                     <button class="tie">🤝</button>
                     <button class="thumb-down">👎</button>
                 </div>
-                <div class="rating-scale">
-                    ${[...Array(10)].map((_, i) => `<span class="rating-item" data-value="${i + 1}">${i + 1}</span>`).join("")}
+            </div>
+        ` : "";
+
+        responseContainer.append(`
+            <div class="feedback-section" data-response-id="${responseId}">
+                ${feedbackHtml}
+                <div class="rating-group">
+                    <p class="rating-label">有帮助程度 Supportiveness Level:</p>
+                    <div class="rating-scale">
+                        ${[...Array(10)].map((_, i) => `<span class="rating-item" data-value="${i + 1}">${i + 1}</span>`).join("")}
+                    </div>
                 </div>
             </div>
         `);
+
         scrollToBottom();
     });
 
