@@ -12,6 +12,7 @@ import time
 from typing import List
 from datetime import datetime
 import uvicorn
+
 from user_interface.model_response import get_model_response
 
 # from vllm import LLM, SamplingParams
@@ -168,11 +169,12 @@ async def chatbot_api(request: Request, message: str = Form(...)):
     dialogue["dialogue"].append({"role": "user", "content": message, "time": current_time})
 
     responses = get_model_response(dialogue["dialogue"])
+    # responses = {"dpo": "", "sft": ""}
     reply_options = [responses['dpo'], responses['sft']]
     random.shuffle(reply_options)
     dialogue["dialogue"].append(
         {"role": "assistant", "time": current_time, "sft": responses["sft"], "dpo": responses["dpo"]})
-    if responses["is_english"]:
+    if responses.get("is_english", False):
         dialogue["dialogue"][-2]["translated_content"] = responses["translated_content"]
         dialogue["dialogue"][-1]["chinese_sft"] = responses["chinese_sft"]
         dialogue["dialogue"][-1]["chinese_dpo"] = responses["chinese_dpo"]
